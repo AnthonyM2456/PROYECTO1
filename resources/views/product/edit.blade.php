@@ -4,33 +4,33 @@
 
 <div class="container mt-5 mb-5">
 
-    <h2>Update Product</h2>
+    <h2>Editar Producto</h2>
     <hr>
 
     <form action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data" method="POST">
         @csrf
 
         <div class="mb-3">
-            <label for="picture" class="form-label">Choose Picture</label>
+            <label for="picture" class="form-label">Elige un Archivo</label>
             <input class="form-control" type="file" name="picture" id="picture">
           </div>
 
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label">título</label>
             <input type="text" class="form-control" name="title" id="title" value="{{ $product->title }}" placeholder="Enter title">
           </div>
 
           <div class="mb-3">
-            <label for="price" class="form-label">Price</label>
+            <label for="price" class="form-label">Precio</label>
             <input type="text" class="form-control" name="price" id="price" value="{{ $product->price }}" placeholder="Enter price">
           </div>
 
           <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
+            <label for="description" class="form-label">Descripción</label>
             <textarea class="form-control" name="description" id="description" placeholder="Enter Description">{{ $product->description }}</textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary">Update Product</button>
+          <button type="submit" class="btn btn-primary">Actualizar producto</button>
 
     </form>
 

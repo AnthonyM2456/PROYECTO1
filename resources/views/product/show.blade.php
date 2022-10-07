@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 class="text-center mt-2">{{ $product->title }} | Detail</h1>
+<h1 class="text-center mt-2">{{ $product->title }} | Detalles</h1>
 <hr>
 <br>
 
@@ -15,11 +15,11 @@
                 <img src="/images/{{ $product->picture }}" height="450px" alt="...">
                 <div class="container m-2 p-2">
                   <h2>{{ $product->title }}</h2>
-                  <h3>Price: ${{ $product->price }}</h3>
+                  <h3>Precio: ${{ $product->price }}</h3>
                   <hr>
                   <p>{{ $product->description }}</p>
-                  <a href="{{ route('product.index') }}" class="btn btn-success">Go Home</a>
-                  <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">Edit</a>
+                  <a href="{{ route('product.index') }}" class="btn btn-success">Regresar</a>
+                  <!--<a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">Edit</a>-->
                 </div>
               </div>
 
@@ -27,7 +27,7 @@
 
 
         <div class="col-md-3">
-            <h3>All Comments</h3>
+            <h3>Todos los Comentarios</h3>
 
             <div class="comments p-2 m-2" style="background-color: rgb(232, 251, 246)">
                 @foreach ($product->comments as $comment)
@@ -37,7 +37,7 @@
             </div>
 
 
-           <h3>Add Comment...</h3>
+           <h3>Añadir Comentario...</h3>
 
            <div class="container m-2 p-2">
 
@@ -47,20 +47,20 @@
                 <input type="hidden" id="id" name="id" value="{{ $product->id }}">
 
                 <div class="mb-3">
-                    <label for="comment" class="form-label">Comment</label>
-                    <input type="text" class="form-control" name="comment" id="comment" placeholder="Enter Comment">
+                    <label for="comment" class="form-label">Comentarios</label>
+                    <input type="text" class="form-control" name="comment" id="comment" placeholder="Tu Comentario">
                 </div>
 
                 <div class="mb-3">
-                    <label for="rating" class="form-label">Rating</label>
-                    <input type="number" class="form-control" name="rating" id="rating" placeholder="Enter Rating">
+                    <label for="rating" class="form-label">Calificación</label>
+                    <input type="number" class="form-control" name="rating" id="rating" placeholder="Tu Calificación">
                 </div>
 
-                  <button type="submit" id="addCommentBtn" class="btn btn-success">comment</button>
+                <button type="submit" id="addCommentBtn" class="btn btn-success">Comentar</button>
 
             </form>
 
-           </div>
+            </div>
 
 
 
@@ -209,14 +209,14 @@ $("#addCommentBtn").click(function(e){
 
 
         <div class="col-md-4">
-            <h3>All Comments</h3>
+            <h3>Todos los Comentarios</h3>
 
             @foreach ($product->comments as $comment)
                 <p>{{ $comment->comment }}</p>
                 <p>{{ $comment->rating }}</p>
             @endforeach
 
-           <h3>Add Comment...</h3>
+           <h3>Añadir Comentario...</h3>
 
            <div class="conatiner">
 
@@ -226,13 +226,13 @@ $("#addCommentBtn").click(function(e){
                 <input type="hidden" id="id" name="id" value="{{ $product->id }}">
 
                 <div class="mb-3">
-                    <label for="comment" class="form-label">Comment</label>
+                    <label for="comment" class="form-label">Comentario</label>
                     <input type="text" class="form-control" name="comment" id="comment" placeholder="Enter Comment">
                 </div>
 
                 <div class="mb-3">
-                    <label for="rating" class="form-label">Rating</label>
-                    <input type="number" class="form-control" name="rating" id="rating" placeholder="Enter Rating">
+                    <label for="rating" class="form-label">Calificación</label>
+                    <input type="number" class="form-control" name="rating" id="rating" min="1" max="5" placeholder="Enter Rating">
                 </div>
 
                   <button type="submit" id="addCommentBtn" onclick="addComment($product->id)" class="btn btn-success">comment</button>

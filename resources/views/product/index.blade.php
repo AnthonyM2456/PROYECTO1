@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 class="text-center mt-2">All Products</h1>
+<h1 class="text-center mt-2">Nuestros Productos</h1>
 <hr>
 <br>
 
@@ -18,7 +18,7 @@
                   <h5 class="card-title">Price: ${{ $product->price }}</h5>
                   <hr>
                   <p class="card-text">{{ $product->description}} </p>
-                  <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary">View Detail</a>
+                  <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary">Ver detalles</a>
                 </div>
               </div>
             @endforeach
