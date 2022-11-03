@@ -23,6 +23,10 @@ class AdminController extends Controller
         return view('admin.homeadmin')->with('products', $products);
     }
 
+    public function create() {
+        return view('admin.homeadmin');
+    }
+
     public function adminGetAllComments() {
         $comments =  $this->admin->adminGetAllComments();
         return view('admin.comments')->with('comments', $comments);

@@ -1,26 +1,25 @@
-@extends('layouts.app')
+@extends('layouts.appAdmin')
 
 @section('template_title')
-    Update Product
+    Create Autor
 @endsection
 
 @section('content')
     <section class="content container-fluid">
-        <div class="">
+        <div class="row">
             <div class="col-md-12">
 
                 @includeif('partials.errors')
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Product</span>
+                        <span class="card-title">Create Autor</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('products.update', $product->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ route('autors.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('product.form')
+                            @include('autor.form')
 
                         </form>
                     </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAdmin')
 
 @section('content')
 
@@ -28,8 +28,8 @@
                                 <td>{{ $product->title }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->description }}</td>
-                                <td><a href="{{ route('product.edit', $product->id)}}" class="btn btn-primary">Editar</a></td>
-                                <td><a href="{{ route('product.show', $product->id)}}" class="btn btn-secondary">Ver</a></td>
+                                <td><a href="{{ route('products.edit', $product->id)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('products.show', $product->id)}}" class="btn btn-secondary">Ver</a></td>
                                 <td>
                                     
                                     <form action="{{ route('admin.product.delete', $product->id)}}" method="POST">
@@ -45,7 +45,9 @@
         </div>
     </div>
     
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="{{ route('product.create')}}" class="btn btn-success btn-circle btn-xl " >Create</a></div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="{{ route('products.create')}}" class="btn btn-success btn-circle btn-xl " >Create</a></div>
+    
+
     <!--<button type="button" class="btn btn-success btn-circle btn-xl"><i class="glyphicon glyphicon-link">asdasdasda</i></button>-->
 </div>
 

@@ -1,10 +1,7 @@
 @extends('layouts.app')
 
-@section('template_title')
-    Product
-@endsection
-
 @section('content')
+
 <h1 class="text-center mt-2">Nuestros Productos</h1>
 <hr>
 <br>
@@ -21,11 +18,13 @@
                   <h5 class="card-title">Price: ${{ $product->price }}</h5>
                   <hr>
                   <p class="card-text">{{ $product->description}} </p>
-                  <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Ver detalles</a>
+                  <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary">Ver detalles</a>
                 </div>
               </div>
             @endforeach
         </div>
     </div>
 </div>
+
+
 @endsection

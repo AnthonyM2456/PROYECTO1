@@ -53,7 +53,7 @@ class LoginController extends Controller
             if (auth()->user()->role == 1) {
                 return redirect()->route('admin.product.index');
             }else{
-                return redirect()->route('product.index');
+                return redirect()->route('products.index');
             }
         }else{
             return redirect()->route('login')

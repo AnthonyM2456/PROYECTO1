@@ -16,11 +16,11 @@ class CommentController extends Controller
             'rating' => 'required'
         ]);
 
-     $data =  Comment::insert([
-          'product_id' => $id,
-          'comment' => $request->comment,
-          'rating' => $request->rating,
-      ]);
+        $data =  Comment::insert([
+            'product_id' => $id,
+            'comment' => $request->comment,
+            'rating' => $request->rating,
+        ]);
 
       return redirect('/products');
 

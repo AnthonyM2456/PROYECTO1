@@ -16,12 +16,10 @@
                 <div class="container m-2 p-2">
                   <h2>{{ $product->title }}</h2>
                   <h3>Precio: ${{ $product->price }}</h3>
-                  <h4>Categoria: {{$product->category->title}}</h4>
-                  <h4>Autor: {{$product->autor->firstname.' '.$product->autor->lastname}}</h4>
                   <hr>
                   <p>{{ $product->description }}</p>
-                  <a href="{{ route('products.index') }}" class="btn btn-success">Regresar</a>
-                  <!--<a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Edit</a>-->
+                  <a href="{{ route('product.index') }}" class="btn btn-success">Regresar</a>
+                  <!--<a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">Edit</a>-->
                 </div>
               </div>
 

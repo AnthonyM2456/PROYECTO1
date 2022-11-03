@@ -6,7 +6,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -19,9 +18,6 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-    
-
-        
 </head>
 <body>
     <div id="app">
@@ -37,18 +33,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        @guest
-                            @if (Route::has('login'))
-                                
-                            @endif
-                            @if (Route::has('register'))
-                                
-                            @endif
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('recharge.index') }}">{{ __('Recargar saldo') }}</a>
-                            </li>
-                            @endguest
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.product.index') }}">{{ __('Ver productos') }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('categories.index') }}">{{ __('Ver categorias') }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('autors.index') }}">{{ __('Ver autores') }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('promotions.index') }}">{{ __('Ver promociones') }}</a>
+                        </li>
+                        
                     </ul>
 
                     

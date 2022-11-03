@@ -3,6 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AutorController;
+use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\RechargeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -21,22 +25,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-Route::get('/products/create', [ProductController::class, 'create'])->name('product.create');
-Route::post('/products/store', [ProductController::class, 'store'])->name('product.store');
+Route::resource('/recharge', RechargeController::class);
+
+Route::resource('/products', ProductController::class);
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
+    Route::resource('/categories', CategoryController::class);
+    Route::resource('/autors', AutorController::class);
+    Route::resource('/promotions', PromotionController::class);
     Route::get('/products', [AdminController::class, 'adminShowAllProduct'])->name('admin.product.index');
     Route::get('/products/comments', [AdminController::class, 'adminGetAllComments'])->name('admin.comment.index');
     Route::delete('/products/delete/{id}', [AdminController::class, 'adminDeleteProduct'])->name('admin.product.delete');
     Route::delete('/products/comments/{id}', [AdminController::class, 'adminDeleteComment'])->name('admin.comment.delete');
 }); 
 
-
-
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('product.show');
-Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
-Route::post('/products/update/{id}', [ProductController::class, 'update'])->name('product.update');
 
 Route::post('/products/{id}', [CommentController::class, 'addComment']);
 //Route::get('/admin/home', [App\Http\Controllers\HomeAdminController::class, 'index'])->name('admin.home')->middleware('isAdmin');
