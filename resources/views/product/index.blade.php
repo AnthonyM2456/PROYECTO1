@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends((Auth::user()->role === 1)? 'layouts.appAdmin':'layouts.app')
 
 @section('template_title')
     Product
@@ -18,7 +18,15 @@
                 <img src="images/{{ $product->picture }}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{ $product->title }}</h5>
-                  <h5 class="card-title">Price: ${{ $product->price }}</h5>
+                  @php
+                    $promotion = App\Models\Promotion::find($product->promotion_id);
+                  @endphp
+
+                    @if (is_null($promotion))
+                        <h5 class="card-title">Price: ${{ $product->price }}</h5>
+                        @else
+                        <h5 class="card-title">Price: ${{ $product->price-($product->price*$promotion->discount/100).' ('.$promotion->discount.'% de descuento)' }}</h5>
+                    @endif
                   <hr>
                   <p class="card-text">{{ $product->description}} </p>
                   <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Ver detalles</a>

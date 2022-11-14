@@ -22,7 +22,7 @@ class Autor extends Model
     
     static $rules = [
 		'firstname' => 'required',
-		'lastname' => 'required',
+		'lastname' => 'nullable',
     ];
 
     protected $perPage = 20;

@@ -63,5 +63,8 @@ class Category extends Model
         return $this->hasMany('App\Models\Product', 'category_id', 'id');
     }
     
+    public function cate(){
+        return $this->belongsTo('App\Models\Category');
+    }
 
 }

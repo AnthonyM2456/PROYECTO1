@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\RechargeController;
+use App\Http\Controllers\CardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -28,6 +29,7 @@ Route::get('/', function () {
 Route::resource('/recharge', RechargeController::class);
 
 Route::resource('/products', ProductController::class);
+Route::resource('/cards', CardController::class);
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('/categories', CategoryController::class);

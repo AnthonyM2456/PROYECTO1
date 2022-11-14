@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Recharge') }}
+                                {{ __('Historial de Recargas') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('recharge.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Recargar Cuenta') }}
                                 </a>
                               </div>
                         </div>
@@ -36,8 +36,8 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Balance</th>
-										<th>User Id</th>
+										<th>Saldo Recargado</th>
+										<th>Hora y Fecha de Recarga</th>
 
                                         <th></th>
                                     </tr>
@@ -48,7 +48,7 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $recharge->balance }}</td>
-											<td>{{ $recharge->user_id }}</td>
+											<td>{{ $recharge->created_at }}</td>
 
                                             <td>
                                                 <form action="{{ route('recharge.destroy',$recharge->id) }}" method="POST">

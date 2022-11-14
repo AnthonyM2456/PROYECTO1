@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recharge;
+use App\Models\Card;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +35,8 @@ class RechargeController extends Controller
     public function create()
     {
         $recharge = new Recharge();
-        return view('recharge.create', compact('recharge'));
+        $card = new Card();
+        return view('recharge.create', compact('recharge', 'card'));
     }
 
     /**
@@ -46,19 +48,36 @@ class RechargeController extends Controller
     public function store(Request $request)
     {
         request()->validate(Recharge::$rules);
+        request()->validate(Card::$rules);
 
-        $user = Auth::user();
+        $cards = DB::select('select * from cards where card_number = :CN AND CVV = :CVV',
+         ['CN' => $request->card_number, 'CVV' => $request->CVV]);
 
-        $data = $request->all();
-        $data['user_id'] = $user->id;
-        $user->balance = $user->balance + $data['balance'];
-        /** @var \App\Models\User $user **/
-        $user->save();
+        if(!$cards){
+            return redirect()->route('recharge.create')->with('fail', 'tarjeta no encontrada');
+        } else{
+            foreach($cards as $card){}
+            $data = $request->all();
 
-        $recharge = Recharge::create($data);
+            if( $data['balance'] > $card->Balance) {
+                return redirect()->route('recharge.create')->with('fail', 'Saldo insuficiente');
+            } else{
+                $card->Balance = $card->Balance - $request->balance;
+                $c = DB::table('cards')->where('card_number', $data['card_number'])->update(['Balance' => $card->Balance]);    
 
-        return redirect()->route('recharge.index')
-            ->with('success', 'Recharge created successfully.');
+                $user = Auth::user();
+
+                $data['user_id'] = $user->id;
+                $user->balance = $user->balance + $data['balance'];
+                /** @var \App\Models\User $user **/
+                $user->save();
+    
+                $recharge = Recharge::create($data);
+    
+                return redirect()->route('recharge.index')
+                    ->with('success', 'Recharge created successfully.');
+            }
+        }
     }
 
     /**

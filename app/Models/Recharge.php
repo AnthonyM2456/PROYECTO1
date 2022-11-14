@@ -22,7 +22,7 @@ class Recharge extends Model
     
     static $rules = [
 		'balance' => 'required',
-		'user_id' => 'required',
+		'user_id' => 'nullable',
     ];
 
     protected $perPage = 20;

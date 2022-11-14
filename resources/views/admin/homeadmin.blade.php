@@ -45,7 +45,7 @@
         </div>
     </div>
     
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="{{ route('products.create')}}" class="btn btn-success btn-circle btn-xl " >Create</a></div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="{{ route('products.create')}}" class="btn btn-success btn-circle btn-xl " >Crear nuevo producto</a></div>
     
 
     <!--<button type="button" class="btn btn-success btn-circle btn-xl"><i class="glyphicon glyphicon-link">asdasdasda</i></button>-->

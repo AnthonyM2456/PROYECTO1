@@ -2,17 +2,17 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('start_date') }}
+            {{ Form::label('fecha de inicio') }}
             {{ Form::date('start_date', $promotion->start_date, ['class' => 'form-control' . ($errors->has('start_date') ? ' is-invalid' : ''), 'placeholder' => 'Start Date']) }}
             {!! $errors->first('start_date', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('end_date') }}
+            {{ Form::label('fecha de fin') }}
             {{ Form::date('end_date', $promotion->end_date, ['class' => 'form-control' . ($errors->has('end_date') ? ' is-invalid' : ''), 'placeholder' => 'End Date']) }}
             {!! $errors->first('end_date', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('discount') }}
+            {{ Form::label('descuento') }}
             {{ Form::text('discount', $promotion->discount, ['class' => 'form-control' . ($errors->has('discount') ? ' is-invalid' : ''), 'placeholder' => 'Discount']) }}
             {!! $errors->first('discount', '<div class="invalid-feedback">:message</div>') !!}
         </div>

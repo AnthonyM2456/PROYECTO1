@@ -76,8 +76,10 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
+        
+        $category_xd = Category::pluck('title', 'id');
 
-        return view('category.edit', compact('category'));
+        return view('category.edit', compact('category','category_xd'));
     }
 
     /**

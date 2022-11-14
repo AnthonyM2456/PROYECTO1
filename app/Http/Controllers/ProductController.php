@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate();
-
+        //dd($products[1]->promotion_id);
         return view('product.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
     }
@@ -84,8 +84,9 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-
-        return view('product.show', compact('product'));
+        $promotion = Promotion::find($product->promotion_id);
+        
+        return view('product.show', compact('product', 'promotion'));
     }
 
     /**

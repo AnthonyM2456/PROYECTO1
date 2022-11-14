@@ -1,4 +1,7 @@
-@extends('layouts.app')
+
+@extends((Auth::user()->role === 1)? 'layouts.appAdmin':'layouts.app')
+
+
 
 @section('content')
 
@@ -15,12 +18,21 @@
                 <img src="/images/{{ $product->picture }}" height="450px" alt="...">
                 <div class="container m-2 p-2">
                   <h2>{{ $product->title }}</h2>
-                  <h3>Precio: ${{ $product->price }}</h3>
+                  @if (is_null($promotion))
+                    <h3>Precio: ${{ $product->price }}</h3>  
+                  @else 
+                    <h3>Precio: ${{ $product->price-($product->price*$promotion->discount/100).' ('.$promotion->discount.'% de descuento)'}}</h3>
+                  @endif
                   <h4>Categoria: {{$product->category->title}}</h4>
                   <h4>Autor: {{$product->autor->firstname.' '.$product->autor->lastname}}</h4>
                   <hr>
                   <p>{{ $product->description }}</p>
-                  <a href="{{ route('products.index') }}" class="btn btn-success">Regresar</a>
+                    @if (Auth::user()->role === 1)
+                        <a href="{{ route('admin.product.index') }}" class="btn btn-success">Regresar</a>
+                    @else
+                        <a href="{{ route('products.index') }}" class="btn btn-success">Regresar</a>
+                    @endif
+                  
                   <!--<a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Edit</a>-->
                 </div>
               </div>

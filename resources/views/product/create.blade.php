@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAdmin')
 
 @section('template_title')
     Create Product
@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Product</span>
+                        <span class="card-title">Crear producto</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('products.store') }}"  role="form" enctype="multipart/form-data">

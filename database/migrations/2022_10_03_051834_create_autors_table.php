@@ -16,9 +16,16 @@ return new class extends Migration
         Schema::create('autors', function (Blueprint $table) {
             $table->id();
             $table->string('firstname');
-            $table->string('lastname');
+            $table->string('lastname')->nullable();
             $table->timestamps();
         });
+        /*
+        Schema::create('autors', function (Blueprint $table) {
+            $table->id();
+            $table->string('Name');
+            $table->timestamps();
+        });
+        */
     }
 
     /**

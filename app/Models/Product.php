@@ -36,7 +36,7 @@ class Product extends Model
 		'description' => 'required',
 		'category_id' => 'required',
 		'autor_id' => 'required',
-		'promotion_id' => 'required',
+		'promotion_id' => 'nullable',
     ];
 
     protected $perPage = 20;

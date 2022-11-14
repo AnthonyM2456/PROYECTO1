@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Product;
+use App\Models\Promotion;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -22,7 +24,10 @@ class CommentController extends Controller
             'rating' => $request->rating,
         ]);
 
-      return redirect('/products');
+        $product = Product::find($id);
+        $promotion = Promotion::find($product->promotion_id);
+        
+        return view('product.show', compact('product', 'promotion'));
 
 
     }
