@@ -28,14 +28,14 @@
                                 <td>{{ $product->title }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->description }}</td>
-                                <td><a href="{{ route('products.edit', $product->id)}}" class="btn btn-primary">Editar</a></td>
-                                <td><a href="{{ route('products.show', $product->id)}}" class="btn btn-secondary">Ver</a></td>
+                                <td><a href="{{ route('products.edit', $product->id)}}" class="btn btn-sm btn-success"><i class="fa fa-fw fa-edit"></i>Editar</a></td>
+                                <td><a href="{{ route('products.show', $product->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-eye"></i>Ver</a></td>
                                 <td>
                                     
                                     <form action="{{ route('admin.product.delete', $product->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Borrar</button>
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i>Borrar</button>
                                     </form>
                                 </td>
                             </tr>

@@ -1,5 +1,6 @@
 <?php
 
+use Collective\Html\HtmlServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -181,7 +182,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -190,6 +191,7 @@ return [
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
@@ -208,6 +210,9 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Form' => Collective\Html\FormFacade::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

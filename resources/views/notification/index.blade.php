@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Recharge
+    Notification
 @endsection
 
 @section('content')
@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Historial de Recargas') }}
+                                {{ __('Notification') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('recharge.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Recargar Cuenta') }}
+                                <a href="{{ route('notifications.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
                                 </a>
                               </div>
                         </div>
@@ -36,29 +36,32 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Saldo Recargado</th>
-										<th>Hora y Fecha de Recarga</th>
+										<th>User Id</th>
+										<th>Destination Email</th>
+										<th>Title</th>
+										<th>Message</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($recharges as $recharge)
+                                    @foreach ($notifications as $notification)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $recharge->balance }}</td>
-											<td>{{ $recharge->created_at }}</td>
+											<td>{{ $notification->user_id }}</td>
+											<td>{{ $notification->destination_email }}</td>
+											<td>{{ $notification->title }}</td>
+											<td>{{ $notification->message }}</td>
 
                                             <td>
-                                                <!--
-                                                <form action="{{ route('recharge.destroy',$recharge->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('recharge.show',$recharge->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('recharge.edit',$recharge->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('notifications.destroy',$notification->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('notifications.show',$notification->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('notifications.edit',$notification->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form>-->
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -67,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $recharges->links() !!}
+                {!! $notifications->links() !!}
             </div>
         </div>
     </div>

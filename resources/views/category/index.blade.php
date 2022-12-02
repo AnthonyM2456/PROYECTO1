@@ -38,7 +38,7 @@
                                         
 										<th>Categoria relacionada</th>
 										<th>Título</th>
-										<th>descripción</th>
+										<th>Descripción</th>
 
                                         <th></th>
                                     </tr>
@@ -57,7 +57,7 @@
 
                                             <td>
                                                 <form action="{{ route('categories.destroy',$category->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('categories.show',$category->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                    <!--<a class="btn btn-sm btn-primary " href="{{ route('categories.show',$category->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>-->
                                                     <a class="btn btn-sm btn-success" href="{{ route('categories.edit',$category->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')

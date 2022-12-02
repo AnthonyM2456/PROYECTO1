@@ -22,11 +22,19 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate();
+        $category = null;
         //dd($products[1]->promotion_id);
-        return view('product.index', compact('products'))
+        return view('product.index', compact('products', 'category'))
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
     }
 
+    public function indexCat($idCat){
+        
+        $products = Product::where('category_id',$idCat)->paginate();
+        $category = Category::find($idCat);
+        return view('product.index', compact('products', 'category'))
+            ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
+    }
     /**
      * Show the form for creating a new resource.
      *

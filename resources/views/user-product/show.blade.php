@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $recharge->name ?? 'Show Recharge' }}
+    {{ $userProduct->name ?? 'Show User Product' }}
 @endsection
 
 @section('content')
@@ -11,22 +11,22 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Recharge</span>
+                            <span class="card-title">Show User Product</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('recharge.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('userproduct.index') }}"> Back</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Balance:</strong>
-                            {{ $recharge->balance }}
+                            <strong>User Id:</strong>
+                            {{ $userProduct->user_id }}
                         </div>
                         <div class="form-group">
-                            <strong>User Id:</strong>
-                            {{ $recharge->user_id }}
+                            <strong>Product Id:</strong>
+                            {{ $userProduct->product_id }}
                         </div>
 
                     </div>

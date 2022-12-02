@@ -89,5 +89,4 @@ class Product extends Model
         return $this->hasMany('App\Models\UserProduct', 'product_id', 'id');
     }
     
-
 }

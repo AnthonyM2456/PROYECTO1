@@ -54,7 +54,7 @@
 
                                             <td>
                                                 <form action="{{ route('promotions.destroy',$promotion->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('promotions.show',$promotion->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                    <!--<a class="btn btn-sm btn-primary " href="{{ route('promotions.show',$promotion->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>-->
                                                     <a class="btn btn-sm btn-success" href="{{ route('promotions.edit',$promotion->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')

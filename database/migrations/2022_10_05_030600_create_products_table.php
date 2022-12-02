@@ -21,7 +21,7 @@ return new class extends Migration
             $table->longText('description');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('autor_id')->constrained('autors')->onDelete('cascade');
-            $table->foreignId('promotion_id')->constrained('promotions')->onDelete('cascade');
+            $table->foreignId('promotion_id')->constrained('promotions')->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }

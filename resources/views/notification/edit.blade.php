@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Update Recharge
+    Update Notification
 @endsection
 
 @section('content')
@@ -13,14 +13,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Recharge</span>
+                        <span class="card-title">Update Notification</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('recharge.update', $recharge->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('notifications.update', $notification->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('recharge.form')
+                            @include('notification.form')
 
                         </form>
                     </div>

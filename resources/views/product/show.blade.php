@@ -30,7 +30,37 @@
                     @if (Auth::user()->role === 1)
                         <a href="{{ route('admin.product.index') }}" class="btn btn-success">Regresar</a>
                     @else
+                    <!-- https://www.youtube.com/watch?v=UyLIPTYHI2M -->
+                        @php
+                            $user = Auth::user();
+                            $v = App\Models\UserProduct::where('user_id', $user->id)->where('product_id', $product->id)->exists();
+                        @endphp
+                        @if($v == false)
+                        
+                        <form action="{{ route('cart.store') }}"  method="POST"> <!-- accion del carrito -->
+                            {{ csrf_field() }}
+                            <input type="hidden" value="{{ $product->id }}" id="id" name="id">
+                            <input type="hidden" value="{{ $product->title }}" id="title" name="title">
+                            @if (is_null($promotion))
+                                <input type="hidden" value="{{ $product->price}}" id="price" name="price">
+                            @else
+                                <input type="hidden" value="{{ $product->price-($product->price*$promotion->discount/100) }}" id="price" name="price">
+                            @endif
+                            <input type="hidden" value="{{ $product->picture }}" id="img" name="img">
+                            <input type="hidden" value="1" id="quantity" name="quantity">
+                                
+                                    <button class="btn btn-success">
+                                        <i class="fa fa-shopping-cart"></i> agregar al carrito
+                                    </button>
+                                    <a href="{{ route('products.index') }}" class="btn btn-success">Regresar</a>
+                            
+                        </form>
+                        @else
+
+                        <a href="/images/{{ $product->picture }}"  download="{{ $product->picture }}" class="btn btn-success">Descargar</a>
                         <a href="{{ route('products.index') }}" class="btn btn-success">Regresar</a>
+                        @endif
+                        
                     @endif
                   
                   <!--<a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Edit</a>-->
