@@ -18,7 +18,7 @@
                         <th scope="col">Título</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">Acción</th>
+                        <!--<th scope="col">Acción</th>-->
                     </tr>
                     </thead>
                     <tbody>
@@ -28,7 +28,7 @@
                                 <td>{{ $product->title }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->description }}</td>
-                                <td><a href="{{ route('products.edit', $product->id)}}" class="btn btn-sm btn-success"><i class="fa fa-fw fa-edit"></i>Editar</a></td>
+                                <!--<td><a href="{{ route('products.edit', $product->id)}}" class="btn btn-sm btn-success"><i class="fa fa-fw fa-edit"></i>Editar</a></td>
                                 <td><a href="{{ route('products.show', $product->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-eye"></i>Ver</a></td>
                                 <td>
                                     
@@ -37,7 +37,7 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i>Borrar</button>
                                     </form>
-                                </td>
+                                </td>-->
                             </tr>
                             @endforeach
                     </tbody>

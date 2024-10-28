@@ -30,9 +30,9 @@
         <div class="pl-4 flex items-center">
           <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
             
-            <img class="h-8 fill-current inline" src="images/logo.png" alt="">
+            <img class="h-14 fill-current inline" src="images/logoHuacoStore.png" alt="">
 
-            BirdMedia
+            HuacoStore
           </a>
         </div>
         <div class="block lg:hidden pr-4">
@@ -71,10 +71,10 @@
         <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
           
           <h1 class="my-4 text-5xl font-bold leading-tight">
-            Bienvenido a BirdMedia!
+            Bienvenido a HuacoStore!
           </h1>
           <p class="leading-normal text-2xl mb-8">
-            Todo el contenido multimedia que te gusta en un solo lugar.
+            Artesanos y emprendedores de la región en un solo lugar.  
           </p>
           
         </div>
@@ -623,9 +623,9 @@
           <div class="flex-1 mb-6 text-black">
             <a class="text-pink-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
               <!--Icon from: http://www.potlabicons.com/ -->
-              <img class="h-8 fill-current inline" src="images/logo.png" alt="">
+              <img class="h-14 fill-current inline" src="images/logoHuacoStore.png" alt="">
 
-              BirdMedia
+              HuacoStore
             </a>
           </div>
           <div class="flex-1">

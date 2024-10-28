@@ -54,16 +54,17 @@
                                             
 											<td>{{ $category->title }}</td>
 											<td>{{ $category->description }}</td>
-
+                                            <!--
                                             <td>
-                                                <form action="{{ route('categories.destroy',$category->id) }}" method="POST">
+                                                <form action="{{ route('categories.destroy',$category->id) }}" method="POST">-->
                                                     <!--<a class="btn btn-sm btn-primary " href="{{ route('categories.show',$category->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>-->
-                                                    <a class="btn btn-sm btn-success" href="{{ route('categories.edit',$category->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                    <!--<a class="btn btn-sm btn-success" href="{{ route('categories.edit',$category->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Borrar</button>
                                                 </form>
-                                            </td>
+                                            </td>-->
+
                                         </tr>
                                     @endforeach
                                 </tbody>

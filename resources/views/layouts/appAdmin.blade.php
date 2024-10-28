@@ -40,7 +40,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.product.index') }}">{{ __('Ver productos') }}</a>
                         </li>
-
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('categories.index') }}">{{ __('Ver categorias') }}</a>
                         </li>
@@ -48,10 +48,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('autors.index') }}">{{ __('Ver autores') }}</a>
                         </li>
-
+                        <!--
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('promotions.index') }}">{{ __('Ver promociones') }}</a>
-                        </li>
+                        </li> -->
                         
                     </ul>
 

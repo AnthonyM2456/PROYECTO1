@@ -51,16 +51,17 @@
 											<td>{{ $autor->firstname }}</td>
 
                                             <td>{{ $autor->lastname }}</td>
-
+                                            <!--
                                             <td>
                                                 <form action="{{ route('autors.destroy',$autor->id) }}" method="POST">
-                                                    <!--<a class="btn btn-sm btn-primary " href="{{ route('autors.show',$autor->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>-->
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('autors.show',$autor->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('autors.edit',$autor->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Borrar</button>
                                                 </form>
                                             </td>
+-->
                                         </tr>
                                     @endforeach
                                 </tbody>

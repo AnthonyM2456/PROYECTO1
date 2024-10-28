@@ -47,7 +47,8 @@
                                 
                             @endif
                         @else
-                            <li class="nav-item">
+                            <!--
+                        <li class="nav-item">
                                 <a class="nav-link" href="{{ route('recharge.index') }}">{{ __('Recargar saldo') }}</a>
                             </li>
                             <li class="nav-item">
@@ -80,7 +81,7 @@
                                 </div>
                                 
                             </li>
-                            
+-->
                         @endguest
                     </ul>
 
@@ -122,6 +123,7 @@
                                     </form>
                                 </div>
                             </li>
+                            <!-- COMENTARIO
                             <li>
                                 <a class="nav-link" href="#">{{ Auth::user()->balance}} 
                                     <i class="fas fa-coins"></i></a>
@@ -175,7 +177,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            
+-->
                         @endguest
                     </ul>
                 </div>

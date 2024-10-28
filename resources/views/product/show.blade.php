@@ -10,12 +10,11 @@
 <br>
 
 
-<div class="container">
+<div class="container mt-4">
     <div class="row">
-        <div class="col-md-9" style="display:flex">
-
+        <div class="col-md-5" >
             <div class="container m-2 p-2">
-                <img src="/images/{{ $product->picture }}" height="450px" alt="...">
+                <img src="/images/{{ $product->picture }}" class="img-fluid" alt="...">
                 <div class="container m-2 p-2">
                   <h2>{{ $product->title }}</h2>
                   @if (is_null($promotion))
@@ -48,10 +47,11 @@
                             @endif
                             <input type="hidden" value="{{ $product->picture }}" id="img" name="img">
                             <input type="hidden" value="1" id="quantity" name="quantity">
-                                
+                                <!-- COMENTARIO
                                     <button class="btn btn-success">
                                         <i class="fa fa-shopping-cart"></i> agregar al carrito
                                     </button>
+                                -->
                                     <a href="{{ route('products.index') }}" class="btn btn-success">Regresar</a>
                             
                         </form>
@@ -69,7 +69,7 @@
 
         </div>
 
-
+        <!--
         <div class="col-md-3">
             <h3>Todos los Comentarios</h3>
 
@@ -109,6 +109,7 @@
 
 
         </div>
+-->
     </div>
 </div>
 
