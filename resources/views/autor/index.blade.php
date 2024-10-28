@@ -36,7 +36,9 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Nombre de Autor</th>
+										<th>Nombre del Autor</th>
+
+                                        <th>Apellido del Autor</th>
 
                                         <th></th>
                                     </tr>
@@ -47,6 +49,8 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $autor->firstname }}</td>
+
+                                            <td>{{ $autor->lastname }}</td>
 
                                             <td>
                                                 <form action="{{ route('autors.destroy',$autor->id) }}" method="POST">
