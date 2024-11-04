@@ -17,10 +17,10 @@
   <div class="row">
     @foreach($products as $pro)
         <div class="col-lg-3">
-            <div class="card" style="margin-bottom: 20px; height: auto;">
+            <div class="card" style="margin-bottom: 20px; height: auto; padding: 10px; background-color: #f9f9f9;">
                 <img src="/images/{{ $pro->picture }}"
                      class="card-img-top mx-auto"
-                     style="height: 150px; width: 150px;display: block;"
+                     style="height: 200px; width: 100%; display: block; object-fit: cover;"
                      alt="{{ $pro->image_path }}">
                      @php
                      $promo = App\Models\Promotion::find($pro->promotion_id);

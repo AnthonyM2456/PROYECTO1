@@ -106,8 +106,11 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
+        $autor = Autor::pluck('firstname', 'id');
+        $promotion = Promotion::pluck('discount', 'id');
+        $category = Category::pluck('title', 'id');
 
-        return view('product.edit', compact('product'));
+        return view('product.edit', compact('product', 'autor', 'promotion', 'category'));
     }
 
     /**

@@ -1,11 +1,19 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
             {{ Form::label('Subir Imagen') }}
-            {{ Form::file('picture', $product->picture, ['class' => 'form-control' . ($errors->has('picture') ? ' is-invalid' : ''), 'placeholder' => 'Picture']) }}
+            {{ Form::file('picture', ['class' => 'form-control' . ($errors->has('picture') ? ' is-invalid' : ''), 'placeholder' => 'Picture']) }}
             {!! $errors->first('picture', '<div class="invalid-feedback">:message</div>') !!}
+
+            @if(isset($product->picture))
+            <div class="mt-2">
+                <p>Imagen actual:</p>
+                <img src="{{ asset('images/' . $product->picture) }}" alt="Imagen actual" width="100">
+            </div>
+            @endif
         </div>
+        
         <div class="form-group">
             {{ Form::label('Titulo') }}
             {{ Form::text('title', $product->title, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => ' ']) }}

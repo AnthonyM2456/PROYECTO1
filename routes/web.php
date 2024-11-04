@@ -56,6 +56,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/products/comments', [AdminController::class, 'adminGetAllComments'])->name('admin.comment.index');
     Route::delete('/products/delete/{id}', [AdminController::class, 'adminDeleteProduct'])->name('admin.product.delete');
     Route::delete('/products/comments/{id}', [AdminController::class, 'adminDeleteComment'])->name('admin.comment.delete');
+    Route::delete('comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 }); 
 
 
