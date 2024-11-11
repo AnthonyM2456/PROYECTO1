@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Card
  *
- * @property $id
- * @property $card_number
- * @property $cardholder_name
- * @property $expiration_date
- * @property $CVV
- * @property $Balance
- * @property $created_at
- * @property $updated_at
+ * @property int $id
+ * @property string $card_number
+ * @property string $cardholder_name
+ * @property \Carbon\Carbon $expiration_date
+ * @property string $CVV
+ * @property decimal $Balance
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  *
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -25,9 +25,9 @@ class Card extends Model
     static $rules = [
 		'card_number' => 'required|min:16|max:16',
 		'cardholder_name' => 'required|min:1|max:20',
-		'expiration_date' => 'required',
-		'CVV' => 'required',
-		'Balance' => 'nullable',
+		'expiration_date' => 'required|date',
+		'CVV' => 'required|digits:3|nullable',
+		'Balance' => 'nullable|numeric',
     ];
 
     protected $perPage = 20;
@@ -40,5 +40,8 @@ class Card extends Model
     protected $fillable = ['card_number','cardholder_name','expiration_date','CVV','Balance'];
 
 
-
+    /**
+     * Definir las fechas como instancias de Carbon.
+     */
+    protected $dates = ['expiration_date'];
 }

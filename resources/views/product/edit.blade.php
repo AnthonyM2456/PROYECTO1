@@ -1,8 +1,13 @@
-@extends('layouts.app')
+@extends((Auth::user()->role === 1)? 'layouts.appAdmin':'layouts.app')
 
 @section('template_title')
     Update Product
 @endsection
+
+
+
+
+
 
 @section('content')
     <section class="content container-fluid">

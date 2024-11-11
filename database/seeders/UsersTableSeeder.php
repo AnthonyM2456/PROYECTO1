@@ -38,6 +38,16 @@ class UsersTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'user2',
+                'email' => 'user2@example.com',
+                'password' => Hash::make('user2'),
+                'role' => 0,
+                'balance' => 500,
+                'email_verified_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
             // Puedes agregar más usuarios aquí
         ]);
     }

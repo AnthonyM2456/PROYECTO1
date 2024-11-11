@@ -1,3 +1,5 @@
+
+
 <div class="box box-info padding-1">
     <div class="box-body">
 
@@ -7,13 +9,15 @@
             {!! $errors->first('picture', '<div class="invalid-feedback">:message</div>') !!}
 
             @if(isset($product->picture))
+            {{ Form::hidden('current_picture', $product->picture) }}
+            <!-- Imagen actual -->
             <div class="mt-2">
                 <p>Imagen actual:</p>
                 <img src="{{ asset('images/' . $product->picture) }}" alt="Imagen actual" width="100">
             </div>
             @endif
         </div>
-        
+
         <div class="form-group">
             {{ Form::label('Titulo') }}
             {{ Form::text('title', $product->title, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => ' ']) }}

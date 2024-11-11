@@ -30,7 +30,7 @@ class Product extends Model
 {
     
     static $rules = [
-		'picture' => 'required',
+		'picture' => 'required|image',
 		'title' => 'required',
 		'price' => 'required',
 		'description' => 'required',

@@ -50,34 +50,35 @@ class RechargeController extends Controller
         request()->validate(Recharge::$rules);
         request()->validate(Card::$rules);
 
-        $cards = DB::select('select * from cards where card_number = :CN AND CVV = :CVV',
-         ['CN' => $request->card_number, 'CVV' => $request->CVV]);
+        // buscar la tarjeta
+        $card = Card::where('card_number', $request->card_number)
+                    ->where('CVV', $request->CVV)
+                    ->first();
 
-        if(!$cards){
-            return redirect()->route('recharge.create')->with('fail', 'tarjeta no encontrada');
-        } else{
-            foreach($cards as $card){}
-            $data = $request->all();
-
-            if( $data['balance'] > $card->Balance) {
-                return redirect()->route('recharge.create')->with('fail', 'Saldo insuficiente');
-            } else{
-                $card->Balance = $card->Balance - $request->balance;
-                $c = DB::table('cards')->where('card_number', $data['card_number'])->update(['Balance' => $card->Balance]);    
-
-                $user = Auth::user();
-
-                $data['user_id'] = $user->id;
-                $user->balance = $user->balance + $data['balance'];
-                /** @var \App\Models\User $user **/
-                $user->save();
-    
-                $recharge = Recharge::create($data);
-    
-                return redirect()->route('recharge.index')
-                    ->with('success', 'Recharge created successfully.');
-            }
+        if (!$card) {
+            // si la tarjeta no existe, redirigir al formulario de recarga con un mensaje de error
+            return redirect()->route('recharge.create')->with('fail', 'Tarjeta no encontrada');
         }
+
+        // Verificiar si el saldo de la tarjeta sea suficiente
+        if ($request->balance > $card->Balance) {
+            return redirect()->route('recharge.create')->with('fail', 'Saldo insuficiente');
+        }
+
+        // actualizar saldos User y Card
+        $card->Balance -= $request->balance;
+        $card->save();
+
+        $user = Auth::user();
+
+        $user->balance += $request->balance;
+        $user->save();
+
+        $data = $request->all();
+        $data['user_id'] = $user->id;
+        Recharge::create($data);
+
+        return redirect()->route('recharge.index')->with('success', 'Recarga realizada correctamente.');
     }
 
     /**

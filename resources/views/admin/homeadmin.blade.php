@@ -19,7 +19,7 @@
                         <th scope="col">Título</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">Acciones</th> <!-- Nueva columna para agrupar acciones -->
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +30,6 @@
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->description }}</td>
                         <td>
-                            <!-- Agrupación de botones de acción en una sola celda -->
                             <a href="{{ route('products.edit', $product->id)}}" class="btn btn-sm btn-success"><i
                                     class="fa fa-fw fa-edit"></i>Editar</a>
                             <a href="{{ route('products.show', $product->id)}}" class="btn btn-sm btn-primary"><i

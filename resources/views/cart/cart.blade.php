@@ -34,7 +34,7 @@
                 @if(\Cart::getTotalQuantity()>0)
                     <h4>{{ \Cart::getTotalQuantity()}} Producto(s) en el carrito</h4><br>
                 @else
-                    <h4>No Product(s) In Your Cart</h4><br>
+                    <h4>Tu carrito esta vacio!</h4><br>
                     <a href="/products" class="btn btn-dark">Continue en la tienda</a>
                 @endif
 

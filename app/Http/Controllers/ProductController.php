@@ -57,31 +57,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // Validar los datos del producto y la imagen
         request()->validate(Product::$rules);
-
-        //image upload
-
+    
         $data = $request->all();
-
-        if($request->file('picture')){
+    
+        if ($request->hasFile('picture')) {
             $file = $request->file('picture');
             $filename = $file->getClientOriginalName();
             $file->move(public_path('images'), $filename);
-            $data['picture'] = "$filename"; 
-            
+            $data['picture'] = $filename; 
         }
-        /*if($image = $request->file('picture')){
-            $name = time(). '.' .$image->getClientOriginalName();
-            $image->move(public_path('images'), $name);
-            $data['picture'] = "$name";
-        }*/
-        
-
-        $product = Product::create($data);
-
+    
+        // Crear el producto
+        Product::create($data);
+    
+        // Redirigir con mensaje de éxito
         return redirect()->route('products.index')
             ->with('success', 'Product created successfully.');
     }
+    
 
     /**
      * Display the specified resource.
@@ -105,9 +100,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
         $autor = Autor::pluck('firstname', 'id');
-        $promotion = Promotion::pluck('discount', 'id');
+        $promotion = Promotion::pluck('discount', 'id')->mapWithKeys(function ($item, $key) {
+            return [$key => $item . '%'];
+        });
         $category = Category::pluck('title', 'id');
 
         return view('product.edit', compact('product', 'autor', 'promotion', 'category'));
@@ -120,15 +117,44 @@ class ProductController extends Controller
      * @param  Product $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        request()->validate(Product::$rules);
-
-        $product->update($request->all());
-
-        return redirect()->route('products.index')
-            ->with('success', 'Product updated successfully');
+        // Validación para la edición: Si no se envía una nueva imagen, no es obligatorio
+        $rules = Product::$rules;
+        $rules['picture'] = 'nullable|image';  // Imagen es opcional al editar
+    
+        $request->validate($rules);
+    
+        // Buscar el producto a editar
+        $product = Product::find($id);
+    
+        // Obtener los datos del formulario
+        $data = $request->all();
+    
+        // Si se sube una nueva imagen
+        if ($request->hasFile('picture')) {
+            // Eliminar la imagen antigua si existe
+            if (file_exists(public_path('images/' . $product->picture))) {
+                unlink(public_path('images/' . $product->picture));  // Eliminar la imagen antigua
+            }
+    
+            // Subir la nueva imagen
+            $file = $request->file('picture');
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path('images'), $filename);
+            $data['picture'] = $filename; // Guardar la nueva imagen
+        } else {
+            // Si no se sube una nueva imagen, mantener la imagen actual
+            $data['picture'] = $product->picture;
+        }
+    
+        // Actualizar el producto
+        $product->update($data);
+    
+        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
+    
+    
 
     /**
      * @param int $id

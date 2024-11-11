@@ -48,10 +48,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('autors.index') }}">{{ __('Ver autores') }}</a>
                         </li>
-                        <!--
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('promotions.index') }}">{{ __('Ver promociones') }}</a>
-                        </li> -->
+                        </li>
                         
                     </ul>
 
@@ -99,7 +99,7 @@
                                     <img class="h-50 fill-current inline" src="images/coin.png" alt="">
                                     
                             </li>
-                        -->
+                            -->
                             <!--
                             <div class="pl-4 flex items-center">
                                 <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">

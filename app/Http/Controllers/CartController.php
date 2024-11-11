@@ -31,7 +31,7 @@ class CartController extends Controller
     }
     public function remove(Request $request){
         \Cart::remove($request->id);
-        return redirect()->route('cart.index')->with('success_msg', 'Item is removed!');
+        return redirect()->route('cart.index')->with('success_msg', 'Producto Eliminado!');
     }
 
     public function add(Request $request){
@@ -48,7 +48,7 @@ class CartController extends Controller
                     'image' => $request->img,
                 )
             ));
-            return redirect()->route('cart.index')->with('success_msg', 'Item Agregado a sú Carrito!');
+            return redirect()->route('cart.index')->with('success_msg', 'Item Agregado a su Carrito!');
         } else{
             return redirect()->route('cart.index')->with('success_msg', 'El item ya existe en su Carrito!');
         }

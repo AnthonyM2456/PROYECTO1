@@ -46,7 +46,7 @@
                                 @endif
                                 <input type="hidden" value="{{ $pro->picture }}" id="img" name="img">
                                 <input type="hidden" value="1" id="quantity" name="quantity">
-                                <!-- COMENTARIO
+
                                 <div class="card-footer" style="background-color: white;">
                                     <div class="row">
                                         <button class="btn btn-secondary btn-sm" class="tooltip-test" title="add to cart">
@@ -54,7 +54,7 @@
                                         </button>
                                     </div>
                                 </div>
--->
+
                             </form>
                         </div>
                     @else
