@@ -16,7 +16,7 @@ class CartController extends Controller
     {
         $products = Product::all();
        //dd($products);
-        return view('cart.shop')->withTitle('E-COMMERCE STORE | SHOP')->with(['products' => $products]);
+        return view('cart.shopHS')->withTitle('E-COMMERCE STORE | SHOP')->with(['products' => $products]);
     }
 
     public function show($id){
@@ -27,7 +27,7 @@ class CartController extends Controller
 
     public function cart()  {
         $cartCollection = \Cart::getContent();
-        return view('cart.cart')->withTitle('E-COMMERCE STORE | CART')->with(['cartCollection' => $cartCollection]);;
+        return view('cart.cartHS')->withTitle('E-COMMERCE STORE | CART')->with(['cartCollection' => $cartCollection]);;
     }
     public function remove(Request $request){
         \Cart::remove($request->id);
@@ -58,24 +58,67 @@ class CartController extends Controller
     public function compra(){
         $data = \Cart::getContent();
         $user = Auth::user();
-        foreach( $data as $d){
-            $userProduct = UserProduct::create([
-                "user_id" => $user->id,
-                "product_id" => $d->id
-            ]);
-            $user->balance = $user->balance - $d->price;
-            $user->save();
+    
+        // Verifica si el usuario tiene productos en el carrito
+        if ($data->isEmpty()) {
+            return redirect()->route('cart.index')->with('error_msg', 'Tu carrito está vacío.');
         }
-        \Cart::clear();
-        $notification = Notification::create([
-            "user_id" => $user->id,
-            "destination_email" => $user->email,
-            "title" => "Compra efectuada",
-            "message" => "Usted hizo una compra"
-        ]);
-        return redirect()->route('products.index')->with('success_msg', 'Compra efectuada!');
+    
+        // Calcula el total de la compra
+        $totalCompra = $data->sum('price');
+    
+        // Verifica si el usuario tiene saldo suficiente
+        if ($user->balance < $totalCompra) {
+            return redirect()->route('cart.index')->with('error_msg', 'Saldo insuficiente para completar la compra.');
+        }
+    
+        // Inicia una transacción para asegurar que todos los cambios ocurran correctamente
+        DB::beginTransaction();
+        
+        try {
+            // Crea los productos para el usuario
+            foreach ($data as $d) {
+                UserProduct::create([
+                    'user_id' => $user->id,
+                    'product_id' => $d->id,
+                ]);
+            }
+    
+            // Descuenta el saldo del usuario
+            $user->balance -= $totalCompra;
+            $user->save();
+    
+            // Elimina los productos del carrito
+            \Cart::clear();
+    
+            // Crea una notificación para el usuario
+            $productNames = $data->map(function ($item) {
+                return $item->name;
+            })->implode(', ');
+    
+            Notification::create([
+                'user_id' => $user->id,
+                'destination_email' => $user->email,
+                'title' => 'Compra efectuada',
+                'message' => "Usted ha realizado una compra de los siguientes productos: {$productNames}. Monto total: \$" . number_format($totalCompra, 2),
+            ]);
+    
+            // Commit de la transacción si todo ha ido bien
+            DB::commit();
+    
+            return redirect()->route('products.index')->with('success_msg', 'Compra efectuada exitosamente!');
+    
+        } catch (\Exception $e) {
+            // Si algo falla, hacemos un rollback
+            DB::rollBack();
+    
+            // Puedes registrar el error si es necesario
+            Log::error('Error en el proceso de compra: ', ['error' => $e->getMessage()]);
+    
+            return redirect()->route('cart.index')->with('error_msg', 'Hubo un error al procesar la compra.');
+        }
     }
-
+    
     public function regalar(Request $request){
         
         $user = Auth::user();
@@ -100,7 +143,7 @@ class CartController extends Controller
     }
 
     public function update(Request $request){
-        \Cart::update($request->id,
+        \Cart::update($request->id, 
             array(
                 'quantity' => array(
                     'relative' => false,

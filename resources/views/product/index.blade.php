@@ -1,4 +1,4 @@
-@extends((Auth::user()->role === 1)? 'layouts.appAdmin':'layouts.app')
+@extends(auth()->check() && (Auth::user()->role === 1)? 'layouts.appAdmin':'layouts.app')
 
 @section('template_title')
     Product
@@ -25,7 +25,7 @@
                      @php
                      $promo = App\Models\Promotion::find($pro->promotion_id);
                      @endphp
-                    @if (Auth::user()->role === 0)
+                    
                         <div class="card-body">
                             <a href="{{ route('products.show', $pro->id) }}"><h6 class="card-title">{{ $pro->title }}</h6></a>
                             
@@ -57,7 +57,7 @@
 
                             </form>
                         </div>
-                    @else
+                    
                     <div class="card-body">
                         <a href="{{ route('products.show', $pro->id) }}"><h6 class="card-title">{{ $pro->title }}</h6></a>
                         @if (is_null($promo))
@@ -66,7 +66,7 @@
                             <p>Price: ${{$pro->price.' ('.$promo->discount.'% de descuento)'}} </p>
                         @endif
                     </div>
-                    @endif
+                    
                 
                 
             </div>

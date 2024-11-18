@@ -24,15 +24,21 @@ class ProductController extends Controller
         $products = Product::paginate();
         $category = null;
         //dd($products[1]->promotion_id);
-        return view('product.index', compact('products', 'category'))
+        return view('product.indexHS', compact('products', 'category'))
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
+    }
+
+    public function welcome()
+    {
+        $products = Product::take(3)->get(); // Obtener solo 3 productos
+        return view('welcomeHS', compact('products'));
     }
 
     public function indexCat($idCat){
         
         $products = Product::where('category_id',$idCat)->paginate();
         $category = Category::find($idCat);
-        return view('product.index', compact('products', 'category'))
+        return view('product.indexHS', compact('products', 'category'))
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
     }
     /**
@@ -73,7 +79,7 @@ class ProductController extends Controller
         Product::create($data);
     
         // Redirigir con mensaje de éxito
-        return redirect()->route('products.index')
+        return redirect()->route('product.indexHS')
             ->with('success', 'Product created successfully.');
     }
     
@@ -151,7 +157,7 @@ class ProductController extends Controller
         // Actualizar el producto
         $product->update($data);
     
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('product.indexHS')->with('success', 'Product updated successfully.');
     }
     
     
@@ -165,7 +171,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id)->delete();
 
-        return redirect()->route('products.index')
+        return redirect()->route('product.indexHS')
             ->with('success', 'Product deleted successfully');
     }
 }
